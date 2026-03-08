@@ -38,6 +38,7 @@ let pesan = "Halo Admin,%0A%0ASaya ingin melakukan pemesanan:%0A%0A"
 
 let nomorAdmin = "6283852222174";
 
-window.open("https://wa.me/" + nomorAdmin + "?text=" + pesan, "_blank");
+window.open("https://wa.me/6283852222174" + nomorAdmin + "?text=" + pesan, "_blank");
+
 
 }
