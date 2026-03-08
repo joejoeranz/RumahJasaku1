@@ -26,6 +26,11 @@ let hp = document.getElementById("phone").value;
 let alamat = document.getElementById("home").value;
 let pesan = document.getElementById("pesan").value;
 
+   if(!nama || !hp || !alamat || !pesan){
+    alert("Form tidak ditemukan");
+    return;
+}
+
 let text = "Halo Admin,%0A%0A"
 + "Nama: " + nama + "%0A"
 + "No HP: " + hp + "%0A"
@@ -37,3 +42,4 @@ let nomorAdmin = "6283852222174";
 window.open("https://wa.me/" + nomorAdmin + "?text=" + text, "_blank");
 
 }
+
