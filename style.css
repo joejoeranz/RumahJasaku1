@@ -13,24 +13,31 @@
 }
 
 body {
-  font-family: "poppins", sans-serif;
-  background-color: black;
-  color: "";
+    font-family: "Poppins", sans-serif;
+    background: #0a0a0a;
+    background-image: radial-gradient(circle at center, #151515 0%, #0a0a0a 100%);
+    color: #fff;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
+
 
 /* navbar */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.1rem 7%;
-  background-color: rgba(24, 22, 22, 0.8);
-  border-bottom: 1px solid#685a4d;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 9999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 7%;
+    /* Efek Kaca */
+    background-color: rgba(1, 1, 1, 0.75); 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    
+    border-bottom: 1px solid rgba(182, 137, 91, 0.3);
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 9999;
+    transition: 0.5s;
 }
 
 .navbar .navbar-logo {
@@ -89,71 +96,162 @@ body {
 #hamburger-menu {
   display: none;
 }
+   /* --- SEARCH FORM FIX --- */
+.navbar .search-form {
+    position: absolute;
+    top: 100%; /* Menempel tepat di bawah navbar */
+    right: 7%;
+    background-color: #fff;
+    width: 30rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    border-radius: 0 0 10px 10px;
+    
+    /* Gunakan visibility dan opacity agar lebih stabil dibanding scaleY jika gagal */
+    opacity: 0;
+    transform: translateY(-20px); 
+    pointer-events: none; /* Agar tidak bisa diklik saat sembunyi */
+    
+    transition: 0.3s ease;
+    z-index: -1; /* Berada sedikit di belakang navbar agar animasinya muncul dari bawah */
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.5);
+}
+
+/* KELAS ACTIVE */
+.navbar .search-form.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    z-index: 10000; /* Naik ke paling depan saat aktif */
+}
+
+/* Styling Input di dalam Search Form */
+.navbar .search-form input {
+    height: 100%;
+    width: 100%;
+    font-size: 1.6rem;
+    color: #010101;
+    padding: 1rem;
+    background: none;
+    border: none;
+}
+
+.navbar .search-form label {
+    cursor: pointer;
+    font-size: 2rem;
+    color: #010101;
+    margin-right: 1.5rem;
+}
+   /* navbar search end */
 
 /* hero section */
 
+/* Update Bagian Hero */
 .hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  background-image: url("img/all.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    /* Tambahkan overlay gelap langsung di background agar gambar tidak menabrak teks */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url("img/all.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Memberikan efek parallax saat di-scroll */
+    position: relative;
+    overflow: hidden;
 }
 
+/* Gradasi bawah yang lebih halus (Fade to Black) */
 .hero::after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 50%;
-  bottom: 0;
-  background: linear-gradient(
-    0deg,
-    rgba(1, 1, 3, 1) 2%,
-    rgba(255, 255, 255, 0) 60%
-  );
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 30%;
+    bottom: 0;
+    background: linear-gradient(0deg, rgba(1, 1, 3, 1) 5%, rgba(1, 1, 3, 0) 100%);
+    z-index: 1;
 }
 
 .hero .content {
-  padding: 1.4rem 7%;
-  max-width: 60rem;
+    padding: 1.4rem 7%;
+    max-width: 70rem; /* Sedikit lebih lebar */
+    z-index: 2; /* Supaya di atas ::after */
+    animation: fadeInUp 1s ease-out; /* Animasi muncul dari bawah */
 }
+
 .hero .content h1 {
-  font-size: 4em;
-  color: #fff;
-  text-shadow: 5px 5px 10px black;
-  line-height: 1.3;
+    font-size: 5rem; /* Lebih besar & bold */
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -2px; /* Efek tipografi modern (kerning rapat) */
+    text-shadow: none; /* Hapus shadow hitam yang kaku */
 }
 
 .hero .content h1 span {
-  color: var(--primary);
+    color: var(--primary);
+    position: relative;
+}
+
+/* Garis bawah dekoratif di bawah teks span */
+.hero .content h1 span::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: var(--primary);
+    opacity: 0.3;
+    z-index: -1;
 }
 
 .hero .content p {
-  font-size: 1.6rem;
-  color: #fff;
-  margin-top: 1rem;
-  line-height: 1.5;
-  font-weight: 100;
-  text-shadow: 1px 1px 5px rgba(1, 1, 3);
-  mix-blend-mode: difference;
+    font-size: 1.4rem;
+    color: #dfdfdf;
+    margin-top: 1.5rem;
+    line-height: 1.6;
+    font-weight: 300;
+    max-width: 45rem;
+    text-shadow: none;
+    mix-blend-mode: normal; /* Balikkan ke normal agar lebih clean */
 }
 
-.hero .content .cta  {
-  margin-top: 1rem;
-  color: #fff;
-  display: inline-block;
-  padding: 0.7rem 2.5rem;
-  font-size: 1.5em;
-  background-color: var(--primary);
-  border-radius: 3rem;
-  box-shadow: 3px 3px 5px rgba(1, 1, 3, 0.5);
-  text-decoration: none;
+/* Tombol CTA yang "Glowing" dan Modern */
+.hero .content .cta {
+    margin-top: 2.5rem;
+    color: #fff;
+    display: inline-block;
+    padding: 1rem 3.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: var(--primary);
+    border-radius: 8px; /* Lebih kotak (Rounded 8px) terlihat lebih profesional dibanding pill */
+    transition: 0.4s;
+    box-shadow: 0 8px 15px rgba(182, 137, 91, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
+.hero .content .cta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(182, 137, 91, 0.5);
+    background-color: #966f48; /* Warna sedikit lebih gelap saat hover */
+}
+
+/* Animasi sederhana agar web terasa hidup */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 .about,
 .menu,
 .contact  {
@@ -227,42 +325,61 @@ body {
 }
 
 .menu .row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 5rem;
-  justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-top: 4rem;
 }
 
-.menu .row .menu-card {
-  text-align: center;
-  padding-bottom: 4rem;
+.menu-card {
+    background: #151515;
+    padding: 1.5rem;
+    border-radius: 20px;
+    border: 1px solid #333;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
 }
 
-.menu .row .menu-card img {
-  border-radius: 50%;
-  width: 80%;
+.menu-card:hover {
+    transform: translateY(-15px);
+    border-color: var(--primary);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.8);
 }
 
-.menu .row .menu-card .menu-card-title {
-  margin: 1rem auto 0.5rem;
+.menu-card img {
+    border-radius: 15px; /* Gunakan rounded square, bukan lingkaran */
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: 0.4s;
 }
 
-.menu-card a,
-.contact .row,
-.contact .btn-kirim 
- {
-  color: #fff;
-  margin-top: 3rem;
-  display: inline-block;
-  padding: 1rem 3rem;
-  font-size: 2rem;
-  background-color: var(--primary);
-  border-radius: 10px;
+.menu-card:hover img {
+    transform: scale(1.05);
 }
 
-.menu p {
-  font-size: 1.2;
+.menu-card-title {
+    font-size: 1.4rem;
+    margin: 1.5rem 0;
+    color: #fff;
 }
+
+.menu-card a {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.menu-card a:hover {
+    background: var(--primary);
+    color: #fff;
+}
+
 
 /* kontak  */
 /* SECTION CONTACT */
@@ -284,7 +401,8 @@ body {
     text-align: center;
    }
 
-   .contact .row form .input-group {
+  
+.contact .row form .input-group {
     display: flex;
     align-items: center;
     margin-top: 2rem;
@@ -311,22 +429,44 @@ body {
 }
 
 .btn-kirim {
-    background-color: var(--primary);
-    color: white;
-    padding: 20px 30px;
-    margin-top: 1 1 30rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: 0.3s;
+    /* Layout & Spacing */
+    display: inline-block;
+    width: 50%; /* Agar memenuhi lebar form, sangat modern untuk mobile */
+    padding: 1rem 2rem;
+    margin-top: 2rem; /* Memperbaiki error 1 1 30rem */
+    
+    /* Typography */
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 
+    /* Styling */
+    background: linear-gradient(45deg, var(--primary), #d4a77a); /* Gradasi warna emas */
+    border: none;
+    border-radius: 8px; /* Sudut sedikit kotak lebih profesional */
+    cursor: pointer;
+    
+    /* Efek Bayangan Lembut */
+    box-shadow: 0 4px 15px rgba(182, 137, 91, 0.3);
+    
+    /* Transisi Halus */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .btn-kirim:hover {
-    background-color: none;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    /* Perbaikan: Jangan gunakan 'none', tapi warna yang lebih terang atau gelap */
+    background: linear-gradient(45deg, #d4a77a, var(--primary)); 
+    
+    transform: translateY(-4px); /* Mengangkat sedikit lebih tinggi */
+    box-shadow: 0 8px 25px rgba(182, 137, 91, 0.5); /* Glow lebih kuat */
+    letter-spacing: 2px; /* Efek teks sedikit merenggang saat di-hover */
+}
+
+.btn-kirim:active {
+    transform: translateY(-1px); /* Efek membal saat diklik */
 }
 /* footer */
 
