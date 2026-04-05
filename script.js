@@ -113,3 +113,4 @@ function kirimWA() {
   // 4. Membuka WhatsApp di Tab Baru
   window.open(`https://wa.me/${nomorAdmin}?text=${text}`, "_blank");
 }
+
