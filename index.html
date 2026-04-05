@@ -43,9 +43,18 @@
         </div>
 
         <div class="navbar-extra">
-            <a href="#menu" id="search"><i data-feather="search"></i></a>
+            <a href="#" id="search-button"><i data-feather="search"></i></a>
             <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
         </div>
+
+        <!-- navbar search form -->
+        <div class="search-form">
+            <input type="search" id="search-box" placeholder="search here...">
+            <label for="search-box"><i data-feather="search"></i></label>
+        </div>
+        <!-- navbar search end -->
+
+
     </nav>
     <!-- navbar end -->
 
@@ -104,40 +113,46 @@
 
         <div class="row">
             <div class="menu-card">
-                <img src="img/tt.webp" alt="TemanKencan" class="menu-card-img">
+                <img src="img/tt.webp" alt="..." class="menu-card-img">
                 <h3 class="menu-card-title">- Teman Main -</h3>
-                <a href="#contact">Kirim Pesan</a>
+                <a href="#contact" onclick="isiOtomatis('Teman Main')">Kirim Pesan</a>
             </div>
             <div class="menu-card">
-                <img src="img/OIP.webp" alt="TemanKencan" class="menu-card-img">
+                <img src="img/OIP.webp" alt="..." class="menu-card-img">
                 <h3 class="menu-card-title">- Perawatan/Renovasi Rumah hunian -</h3>
-                <a href="#contact">Kirim Pesan</a>
+                <a href="#contact" onclick="isiOtomatis('Perawatan/Renovasi Rumah hunian')">Kirim Pesan</a>
             </div>
             <div class="menu-card">
-                <img src="img/OIP1.webp" alt="TemanKencan" class="menu-card-img">
+                <img src="img/OIP1.webp" alt="..." class="menu-card-img">
                 <h3 class="menu-card-title">- Bantu Tugas Skripsi -</h3>
-                <a href="#contact">Kirim Pesan</a>
+                <a href="#contact" onclick="isiOtomatis('Bantu Tugas Skripsi')">Kirim Pesan</a>
             </div>
             <div class="menu-card">
-                <img src="img/OIP2.webp" alt="TemanKencan" class="menu-card-img">
+                <img src="img/OIP2.webp" alt="..." class="menu-card-img">
                 <h3 class="menu-card-title">- Cleaning Service -</h3>
-                <a href="#contact">Kirim Pesan</a>
+                <a href="#contact" onclick="isiOtomatis('Clening Service')">Kirim Pesan</a>
             </div>
             <div class="menu-card">
-                <img src="img/OIP3.webp" alt="TemanKencan" class="menu-card-img">
-                <h3 class="menu-card-title">- Antar barang -</h3>
-                <a href="#contact">Kirim Pesan</a>
+                <img src="img/OIP3.webp" alt="..." class="menu-card-img">
+                <h3 class="menu-card-title">- Antar Barang -</h3>
+                <a href="#contact" onclick="isiOtomatis('Antar Barang')">Kirim Pesan</a>
             </div>
             <div class="menu-card">
-                <img src="img/tk.jpg" alt="TemanKencan" class="menu-card-img">
+                <img src="img/tk.jpg" alt="..." class="menu-card-img">
                 <h3 class="menu-card-title">- Proyek Rumah Tinggal/IndeKos -</h3>
-                <a href="#contact">Kirim Pesan</a>
+                <a href="#contact" onclick="isiOtomatis('Proyek Rumah Tinggal/Indekos')">Kirim Pesan</a>
             </div>
             <div class="menu-card">
-                <img src="img/edd.png" alt="TemanKencan" class="menu-card-img">
+                <img src="img/edd.png" alt="..." class="menu-card-img">
                 <h3 class="menu-card-title">- Editing video/konten -</h3>
-                <a href="#contact">Kirim Pesan</a>
+                <a href="#contact" onclick="isiOtomatis('Editing Video/Konten')">Kirim Pesan</a>
             </div>
+            <div class="menu-card">
+                <img src="img/OIP11.webp" alt="..." class="menu-card-img">
+                <h3 class="menu-card-title">- Editing video/konten -</h3>
+                <a href="#contact" onclick="isiOtomatis('Editing Video/Konten')">Kirim Pesan</a>
+            </div>
+
 
         </div>
     </section>
@@ -147,7 +162,6 @@
     <!-- kontak section -->
     <section id="contact" class="contact">
         <h2><span>Hubungi</span> Kami</h2>
-        <p>Lorem ipsum</p>
 
         <div class="row">
             <iframe
@@ -160,20 +174,20 @@
                     <input type="text" id="name" placeholder="Nama Lengkap" required><br><br>
                 </div>
                 <div class="input-group">
-                    <i data-feather="user"></i>
+                    <i data-feather="phone"></i>
                     <input type="text" id="phone" placeholder="no hp" required><br><br>
                 </div>
                 <div class="input-group">
-                    <i data-feather="user"></i>
-                    <input type="text" id="home" placeholder="alamat lengkap" required><br><br>
+                    <i data-feather="home"></i>
+                    <input type="text" id="alamat" placeholder="alamat lengkap" required><br><br>
                 </div>
                 <div class="input-group">
-                    <i data-feather="user"></i>
+                    <i data-feather="message-circle"></i>
                     <input type="text" id="pesan" placeholder="Apa yang bisa kami bantu" required><br><br>
                 </div>
-                
+
                 <button type="button" class="btn-kirim" onclick="kirimWA()">Kirim Pesanan</button>
-           </form>
+            </form>
 
 
         </div>
@@ -211,24 +225,17 @@
     <!-- footer end -->
 
     <!-- feather icons -->
-<script src="https://unpkg.com/feather-icons"></script>
-<script src="script.js"></script>
 
-<script>
-feather.replace();
-</script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="JS/script.js"></script>
 
-    
-   
-    <!-- bootstrap -->
+    <script>
+        feather.replace();
+    </script>
 
-
-
-    <!--My Scrypt -->
 
 
 </body>
-
 
 
 </html>
